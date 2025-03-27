@@ -7,16 +7,30 @@ screen = pygame.display.set_mode((1200, 800))
 pygame.display.set_caption("pardon")
 # 
 
-path= os.path.abspath(__file__ + "/..")
-path= os.path.join(path,"image.png")
 
-image = pygame.image.load(path)
-image= pygame.transform.scale(image,(200,200))
-image= pygame.transform.flip(image, True, True)
 
 
 
 #
+class Settings:
+    def __init__(self, width, height, x, y, name_image):
+        self.WIDTH = width
+        self.HEIGHT = height 
+        self.X=x
+        self.Y=y
+        self.NAME_IMAGE=name_image
+        self.IMAGE = None
+    
+    def load_image(self):
+        path= os.path.abspath(__file__ + "/..")
+        path= os.path.join(path, self.NAME_IMAGE)
+        self.IMAGE = pygame.image.load(path)
+        self.IMAGE= pygame.transform.scale(self.IMAGE,(self.WIDTH,self.HEIGHT))
+        self.IMAGE= pygame.transform.flip(self.IMAGE, True, True)
+
+
+
+
 game = True 
 while game == True:
     for event in pygame.event.get():
